@@ -1,0 +1,267 @@
+body{
+    font-family: sans-serif;
+    background-color: #000;
+    color: #eee;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
+header{
+    width: 1140px;
+    max-width: 80%;
+    margin: auto;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+header nav{
+    display: flex;
+    width: 100%;
+    gap: 60px;
+    text-transform: uppercase;
+}
+a{
+    text-decoration: none;
+    color: #eee;
+    font-size: 1rem;
+    font-weight: bold;
+}
+/* Carrosel */
+.carousel{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* coloca uma imagem atrás da outra*/
+    margin-top: -50px;
+    position: relative;
+}
+.carousel .list .item{
+    display: none; /* ocultar todos por padrão*/
+    position: absolute;
+    inset: 0; /*posicionar corretamente*/
+    transition: opacity 0.5s ease; /* Transição suave para a opacidade */
+}
+/* mostrar apenas o slider q estiver ativo */
+.carousel .list .item.active{
+    display: block;
+    opacity: 1; /* Define a opacidade do item ativo */
+}
+.carousel .list .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /**/
+}
+.carousel .list .item .content{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 20%;
+    width: 1140px;
+    max-width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-right: 30%;
+    box-sizing: border-box;
+    color: #fff;
+    text-shadow: 0 5px 10px #0004;
+}
+/* estilização h3 */
+.carousel .list .item .content .author{
+    font-weight: bold;
+    letter-spacing: 3px; /*espaçamento entre as letras*/
+    
+}
+/* estilização h1 */
+.carousel .list .item .content .title
+{
+    margin-top: 5px;
+    font-weight: 900;
+    font-size: 5em;
+    
+}
+/* estilização h2 */
+.carousel .list .item .content .topic{
+    margin-bottom: 5px;
+    font-weight: 900;
+    font-size: 5em;
+    list-style: 1.3em;
+    color: #f1683a;
+}
+/* estilização p */
+.carousel .list .item .content p{
+    font-family: sans-serif;
+    font-size: 15px;
+}
+/* estilização dos botões */
+.carousel .list .item .content .btn{
+    display: grid;
+    grid-template-columns: repeat(2, 130px);
+    grid-template-rows: 40px;
+    gap: 5px;
+    margin-top: 20px;   
+}
+.carousel .list .item .content button{
+    border: none;
+    background-color: #eee;
+    letter-spacing: 3px;
+    font-family: sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+}
+/* deixar o segundo botão transparent */
+.carousel .list .item .content button:nth-child(2){
+    background-color: transparent;
+    color: #eee;
+    border: solid #eee;
+}
+
+/* mini carrosel de imagens */
+
+.thumbnail{
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    width: max-content;
+    z-index: 100;
+    display: flex;
+    gap: 20px;
+}
+.thumbnail .item-img{
+    width: 150px;
+    height: 220px;
+    flex-shrink: 0; /**/
+    position: relative;
+}
+.thumbnail .item-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /**/
+    border-radius: 20px;
+}
+.thumbnail .item-img .content-slider{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+}
+.thumbnail .item-img .content-slider .title-slider{
+    font-weight: bold;
+}
+
+/* arrows */
+
+.arrows{
+    position: absolute;
+    top: 80%;
+    right: 52%;
+    width: 300px;
+    max-width: 30%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.arrows button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #eee4;
+    border: none;
+    font-family: monospace;
+    color: #fff;
+    font-weight: bold;
+    font-size: large;
+    transition: 0.1s;
+    cursor: pointer;
+    z-index: 100;
+}
+.arrows button:hover{
+    background-color: #eee;
+    color: #555;
+}
+
+ .carousel .list .item:nth-child(1){  
+    z-index: 1;
+}
+
+/* animação do texto */
+@keyframes fadeInTop {
+    0%{
+        opacity: 0;
+        transform:  translateY(-50px); /*texto começa 50px acima*/  
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0); /*texto se move para posição orginal*/
+    }
+}
+
+.carousel .list .item:nth-child(1)  .author,
+.carousel .list .item:nth-child(1)  .title,
+.carousel .list .item:nth-child(1)  .topic,
+.carousel .list .item:nth-child(1) .des,
+.carousel .list .item:nth-child(1) .btn{
+   
+    opacity: 0;
+    animation: fadeInTop 2s ease-out forwards;
+}
+
+.carousel .list .item:nth-child(1)  .ttitle{
+    animation-delay: 1.2s;
+}
+.carousel .list .item:nth-child(1)  .topic{
+    animation-delay: 1.4s;
+}
+
+.carousel .list .item:nth-child(1)  .des{
+    animation-delay: 1.6s;
+}
+.carousel .list .item:nth-child(1) .btn{
+    animation-delay: 1.8s;
+}
+
+/* animação do slider */
+
+.carousel.next .list .item:nth-child(1) img{
+    width: 150px;
+    height: 220px;
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    border-radius: 20px;
+    animation: showImage 0.5 linear 1 forwards;
+}
+
+@keyframes showImage{
+    to{
+        width: 100%;
+        height: 100%;
+        left: 0;
+        bottom: 0;
+        border-radius: 0;
+    }
+}
+.carousel.next .thumbnail .item:nth-last-child(1){
+
+    width: 0;
+    overflow: hidden;
+    animation: showThumbnail .5s linear 1 forwards;
+}
+@keyframes showThumbnail{
+    to{
+        width: 150px;
+    }
+}
+
+.fadeIn {
+    animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
